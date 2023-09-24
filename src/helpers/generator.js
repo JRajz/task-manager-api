@@ -1,5 +1,5 @@
 const MIN = 1;
-const MAX = 100000000;
+const MAX = 10000;
 
 class Generator {
   static createTaskId(taskIds) {
