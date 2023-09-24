@@ -38,18 +38,18 @@ app.get("/tasks/:taskId", (req, res) => {
   const tasks = JSON.parse(JSON.stringify(taskData));
 
   const taskId = req.params.taskId;
-  let filterCourse = tasks.filter((c) => c.taskId == taskId);
-  if (filterCourse.length == 0) {
+  let filterTask = tasks.filter((c) => c.taskId == taskId);
+  if (filterTask.length == 0) {
     return res.status(404).json({
       error: true,
-      message: "No appropriate course found with appropriate id",
+      message: "No appropriate task found with appropriate id",
     });
   }
 
   return res.status(200).json({
     error: true,
-    message: "No appropriate course found with appropriate id",
-    data: filterCourse[0],
+    message: "Task found",
+    data: filterTask[0],
   });
 });
 
@@ -79,7 +79,7 @@ app.post("/tasks", (req, res) => {
             message: "There was an issue while creating the task.",
           });
         } else {
-          return res.status(200).json({
+          return res.status(201).json({
             error: false,
             message: "Task added successfully",
             data: taskDetails,
@@ -127,7 +127,7 @@ app.put("/tasks/:taskId", (req, res) => {
         if (err) {
           res.status(500).send({
             error: true,
-            message: "Something went wrong while creating the course",
+            message: "Something went wrong while updating the task",
           });
         } else {
           return res.status(200).json({
@@ -171,7 +171,7 @@ app.delete("/tasks/:taskId", (req, res) => {
       if (err) {
         res.status(500).send({
           error: true,
-          message: "Something went wrong while creating the course",
+          message: "Something went wrong while deleting the task",
         });
       } else {
         return res.status(200).json({
