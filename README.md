@@ -10,7 +10,7 @@ Build a RESTful API for a simple task manager application.
 In this project, we will create a RESTful API using Node.js, Express.js, and NPM packages. The API will allow users to perform CRUD operations (Create, Read, Update, and Delete) on tasks. The tasks should have a title, description, and a flag for completion status. The API should be tested using Postman or Curl.
 ## Endpoints
 
-## Priority Levels
+### Priority Levels
 
 - Low
 - Medium
@@ -80,7 +80,7 @@ In this project, we will create a RESTful API using Node.js, Express.js, and NPM
 - **Method:** `GET`
 - **Description:** Retrieve tasks by priority level.
 - **Path Variables:**
-  - `level` (string): Priority level of the tasks. Example: `level=` `low`/`medium`/`hight`.
+  - `level` (string): Priority level of the tasks. Example: `level=` `low`/`medium`/`high`.
 
 ## Example Usage
 
