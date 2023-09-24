@@ -116,15 +116,9 @@ app.put("/tasks/:taskId", (req, res) => {
     }
 
     let tasksModified = dbData;
-
-    // List of keys to be updated
-    const keysToUpdate = ["title", "description", "level", "isComplete"];
-
-    // Iterate through the keys and update if they match the specified keys
-    for (const key of keysToUpdate) {
-      tasksModified[taskIndex][key] = taskDetails[key];
-    }
-
+    // update task
+    Object.assign(tasksModified[taskIndex], taskDetails);
+  
     fs.writeFile(
       filePath,
       JSON.stringify(tasksModified),

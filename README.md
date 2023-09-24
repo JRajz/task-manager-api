@@ -1,4 +1,3 @@
-
 # Task Management Documentaion
 
 ## Objective
@@ -8,6 +7,7 @@ Build a RESTful API for a simple task manager application.
 ## Project Description
 
 In this project, we will create a RESTful API using Node.js, Express.js, and NPM packages. The API will allow users to perform CRUD operations (Create, Read, Update, and Delete) on tasks. The tasks should have a title, description, and a flag for completion status. The API should be tested using Postman or Curl.
+
 ## Endpoints
 
 ### Priority Levels
@@ -80,7 +80,17 @@ In this project, we will create a RESTful API using Node.js, Express.js, and NPM
 - **Method:** `GET`
 - **Description:** Retrieve tasks by priority level.
 - **Path Variables:**
+
   - `level` (string): Priority level of the tasks. Example: `level=` `low`/`medium`/`high`.
+
+**Note:** When sending a `POST`/`PUT` request, only the following body parameters are allowed:
+
+- `title` (string): The title of the task.
+- `description` (string): A description of the task.
+- `level` (string): The task level (e.g., "low", "medium", "high").
+- `isComplete` (boolean): Indicates whether the task is complete (true or false).
+
+Sending any extra parameters in the request body will result in an error.
 
 ## Example Usage
 
@@ -97,6 +107,7 @@ curl -X GET "http://localhost:3000/tasks?isComplete=true"
 ### Create a New Task
 
 To create a new task, make a POST request with the task details:
+
 ```shell
 curl -X POST "http://localhost:3000/tasks" -H "Content-Type: application/json" -d '{
   "title": "Important Project Task",
@@ -109,6 +120,7 @@ curl -X POST "http://localhost:3000/tasks" -H "Content-Type: application/json" -
 ### Get Task by ID
 
 To retrieve a specific task by its ID, make a GET request with the task ID:
+
 ```shell
 curl -X GET "http://localhost:3000/tasks/71397550"
 ```
@@ -116,6 +128,7 @@ curl -X GET "http://localhost:3000/tasks/71397550"
 ### Update Task by ID
 
 To update a specific task by its ID, make a PUT request with the task ID and updated details:
+
 ```shell
 curl -X PUT "http://localhost:3000/tasks/71397550" -H "Content-Type: application/json" -d '{
   "title": "Sample Task 2",
@@ -125,20 +138,23 @@ curl -X PUT "http://localhost:3000/tasks/71397550" -H "Content-Type: application
 }'
 ```
 
-
 ### Delete Task by ID
 
 To delete a specific task by its ID, make a DELETE request with the task ID:
+
 ```shell
 curl -X DELETE "http://localhost:3000/tasks/71397550"
 ```
 
 ### Get Tasks by Priority Level
+
 To retrieve tasks by priority level, make a GET request with the desired priority level:
+
 ```shell
 curl -X GET "http://localhost:3000/tasks/priority/high"
 ```
 
 ### Usage Guidelines
+
 - Ensure that you provide valid data in the request body when creating or updating tasks.
 - Use the appropriate HTTP methods and endpoints for your desired operations.

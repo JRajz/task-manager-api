@@ -31,8 +31,17 @@ class Validator {
       typeof payloadData.isComplete !== "boolean"
     ) {
       returnData.error = true;
-      returnData.message = "isComplete must be a boolean value.";
+      returnData.message = "isComplete is required and must be a boolean value.";
     }
+    else {     
+      // allows only 4 keys (title, description, level, isComplete) throws error more than that
+      const payload = Object.keys(payloadData);
+      if (payload.length > 4) {
+        returnData.error = true;
+        returnData.message = "Invalid payload. Additional properties found in the task info.";
+      }
+    }
+
 
     return returnData;
   }
