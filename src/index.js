@@ -1,9 +1,8 @@
 const express = require("express");
-const taskData = require("../tasks.json");
+const taskData = require("./tasks.json");
 const validator = require("./helpers/validator");
-const generator = require("./helpers/generator");
 const path = require("path");
-const filePath = path.join(__dirname, "..", "tasks.json");
+const filePath = path.join(__dirname, "tasks.json");
 const fs = require("fs");
 const PORT = 3000;
 
@@ -18,7 +17,7 @@ app.get("/", (req, res) => {
 
 // get all tasks
 app.get("/tasks", (req, res) => {
-  // retreived task is in formatted iby created
+  // retreived task in formatted
   let tasks = JSON.parse(JSON.stringify(taskData)) ?? [];
 
   const isComplete = req.query.isComplete ?? false;
@@ -47,7 +46,7 @@ app.get("/tasks/:taskId", (req, res) => {
   }
 
   return res.status(200).json({
-    error: true,
+    error: false,
     message: "Task found",
     data: filterTask[0],
   });
@@ -62,8 +61,8 @@ app.post("/tasks", (req, res) => {
   if (!isValidate.error) {
     let tasksModified = dbData;
 
-    // generate a unique id for task
-    taskDetails.taskId = generator.createTaskId(dbData.map((v) => v.taskId));
+    // taskId incrementing by one - Not the best practice
+    taskDetails.taskId = dbData.length ? dbData[dbData.length - 1].taskId + 1 : 1;
 
     tasksModified.push(taskDetails);
 
